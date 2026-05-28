@@ -5,6 +5,7 @@ import com.igorpolvora.workshopmongo.domain.User;
 import com.igorpolvora.workshopmongo.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.igorpolvora.workshopmongo.services.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -14,5 +15,9 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findById(String id) {
+        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
 }
