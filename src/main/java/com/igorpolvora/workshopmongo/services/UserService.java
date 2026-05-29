@@ -2,10 +2,12 @@ package com.igorpolvora.workshopmongo.services;
 
 import org.springframework.stereotype.Service;
 import com.igorpolvora.workshopmongo.domain.User;
+import com.igorpolvora.workshopmongo.dto.UserDTO;
 import com.igorpolvora.workshopmongo.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.igorpolvora.workshopmongo.services.exception.ObjectNotFoundException;
+
 
 @Service
 public class UserService {
@@ -19,5 +21,13 @@ public class UserService {
 
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+    }
+
+    public User insert(User obj) {
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO) {
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
     }
 }
