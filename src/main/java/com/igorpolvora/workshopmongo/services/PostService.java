@@ -8,6 +8,7 @@ import com.igorpolvora.workshopmongo.services.exception.ObjectNotFoundException;
 import java.util.List;
 
 
+
 @Service
 public class PostService {
 
@@ -19,6 +20,6 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String text) {
-        return PostRepository.findByTitleContainingIgnoreCase(text);
+        return PostRepository.findByTitle(text);
     }
 }
